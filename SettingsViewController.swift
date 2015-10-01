@@ -9,9 +9,13 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
+    
+    @IBOutlet weak var SettingsViewControllerScrollView: UIScrollView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        SettingsViewControllerScrollView.contentSize = CGSizeMake(320, 695)
 
         // Do any additional setup after loading the view.
     }
@@ -20,6 +24,7 @@ class SettingsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
 
     /*

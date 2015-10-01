@@ -9,6 +9,11 @@
 import UIKit
 
 class ConversationsViewController: UIViewController {
+    
+    
+    @IBAction func onBack(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

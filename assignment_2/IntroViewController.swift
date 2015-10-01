@@ -10,8 +10,12 @@ import UIKit
 
 class IntroViewController: UIViewController {
 
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        scrollView.contentSize = CGSizeMake(320, 1136)
 
         // Do any additional setup after loading the view.
     }

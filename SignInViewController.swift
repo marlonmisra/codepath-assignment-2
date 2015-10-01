@@ -8,28 +8,100 @@
 
 import UIKit
 
-class SignInViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+class SignInViewController: UIViewController, UITextFieldDelegate {
+    
+    
+    @IBOutlet weak var MoveUp: UIView!
+    
+    @IBOutlet weak var emailField: UITextField!
+    
+    @IBOutlet weak var passwordField: UITextField!
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+        UIView.animateWithDuration(0.3) { () -> Void in
+            
+            self.MoveUp.frame.origin.y -= 220
+        }
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func delay(delay:Double, closure:()->()) {
+        dispatch_after(
+            dispatch_time(
+                DISPATCH_TIME_NOW,
+                Int64(delay * Double(NSEC_PER_SEC))
+            ),
+            dispatch_get_main_queue(), closure)
     }
-    */
+    
+    @IBAction func onSignIn(sender: AnyObject) {
+        if ( emailField.text!.isEmpty || passwordField.text!.isEmpty ) {
+            
+            let alertController = UIAlertController(title: "Info missing", message: "Please enter your email and password", preferredStyle: .Alert)
+            // create an OK action
+            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                // handle response here.
+            }
+            // add the OK action to the alert controller
+            alertController.addAction(OKAction)
+            
+            presentViewController(alertController, animated: true) {
+            }
 
+        }
+        
+        else {
+            
+            let waitAlert = UIAlertController(title: "Signing In...", message: nil, preferredStyle: .Alert)
+            presentViewController(waitAlert, animated: true) {
+            }
+            
+            
+            // Delay for 2 seconds, then run the code between the braces.
+            delay(2) {
+                
+                waitAlert.dismissViewControllerAnimated(true, completion: nil)
+                
+                if (self.emailField.text == "marlonmisra@gmail.com" && self.passwordField.text == "test123") {
+                    self.performSegueWithIdentifier("toIntro", sender: nil)
+                }
+                
+                else {
+                    let alertController2 = UIAlertController(title: "Sign In Failed", message: "Incorrect Email or password", preferredStyle: .Alert)
+                    // create an OK action
+                    let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                        // handle response here.
+                    }
+                    // add the OK action to the alert controller
+                    alertController2.addAction(OKAction)
+                    
+                    self.presentViewController(alertController2, animated: true) { }
+                }
+            }
+            
+        }
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
