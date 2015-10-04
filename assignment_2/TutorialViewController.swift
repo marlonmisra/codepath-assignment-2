@@ -34,6 +34,12 @@ class TutorialViewController: UIViewController {
         
         // Set the current page, so the dots will update
         pageController.currentPage = page
+        
+        if scrollViewTutorial.contentOffset.x >= 960 {
+            UIView.animateWithDuration(0.04, animations: { () -> Void in
+                self.pageController.alpha = 0
+            })
+        }
     }
     
 

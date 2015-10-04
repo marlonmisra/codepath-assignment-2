@@ -10,18 +10,23 @@ import UIKit
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
     
+    //login view
+    @IBOutlet weak var loginView: UIView!
     
-    @IBOutlet weak var MoveUp: UIView!
-    
+    //email and password textfields
     @IBOutlet weak var emailField: UITextField!
-    
     @IBOutlet weak var passwordField: UITextField!
     
+    //sign in buttons to move up
+    @IBOutlet weak var MoveUp: UIView!
+    
+    
+    
+    
     func textFieldDidBeginEditing(textField: UITextField) {
-        
         UIView.animateWithDuration(0.3) { () -> Void in
             
-            self.MoveUp.frame.origin.y -= 220
+            self.MoveUp.frame.origin.y = 230
         }
         
     }
